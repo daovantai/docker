@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:  #cap nhap cho spring boot va mysql
+  server:  #spring boot
+    build: .        #thu muc hien tai
+    restart: always
+    ports:
+      - 8080:8080     #1 cong cua container 1 cong cua may chu
+    depends_on:   # thong bao su phu thuoc
+      - mysqldb
+  mysqldb:
+    platform: linux/x86_64
+    image: "mysql:8.0.31"
+    restart: always
+    ports:
+      - 3307:3306  #cong mac dinh mysql 3306 , nen dat sang cong khac
+    environment:
+      MYSQL_DATABASE: tda
+      MYSQL_USER: 1234567
+      MYSQL_PASSWORD: 1234567
+      MYSQL_ROOT_PASSWORD: 1234567
